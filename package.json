@@ -4,7 +4,8 @@
   "description": "my advent of code solutions for 2017",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "node index.js",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/stefankarlsson/aoc2017/issues"
   },
-  "homepage": "https://github.com/stefankarlsson/aoc2017#readme"
+  "homepage": "https://github.com/stefankarlsson/aoc2017#readme",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }
