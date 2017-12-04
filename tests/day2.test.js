@@ -1,7 +1,7 @@
 const day2 = require('../daily-challenges/day2');
 const fs = require('fs');
 
-let testinput1 = fs.readFileSync('tests/day2.testinput', {encoding: 'utf-8'});
+let testinput1 = fs.readFileSync('tests/test-inputs/day2.testinput', {encoding: 'utf-8'});
 let testinput2 = fs.readFileSync('tests/test-inputs/day2.testinput2', {encoding: 'utf-8'});
 
 describe('getAnswer1', () => {
