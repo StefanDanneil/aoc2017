@@ -46,7 +46,7 @@ let day6 = {
 		return this.findRepetition(formattedInput, 2);
 	},
 
-	findRepetition: function (formattedInput, occurence = 1) {
+	findRepetition: function (formattedInput, occurencesToFind = 1) {
 		let seenStates = [];
 		let result = 0;
 		let foundOccurences = 0;
@@ -68,8 +68,8 @@ let day6 = {
 				if (formattedInput.isEqual(arr) ) {
 					foundOccurences++;
 
-					if (foundOccurences === occurence) {
-						result = seenStates.length +1 - (occurence-1);
+					if (foundOccurences === occurencesToFind) {
+						result = seenStates.length +1 - (occurencesToFind-1);
 					}
 
 					seenStates = [];
