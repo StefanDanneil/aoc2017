@@ -7,6 +7,7 @@ const day3 = require('./daily-challenges/day3');
 const day4 = require('./daily-challenges/day4');
 const Day5 = require('./daily-challenges/day5');
 const day6 = require('./daily-challenges/day6');
+const day7 = require('./daily-challenges/day7');
 
 let day1Input = fs.readFileSync('inputs/day1', {encoding: 'utf-8'});
 let day2Input = fs.readFileSync('inputs/day2', {encoding: 'utf-8'});
@@ -14,6 +15,7 @@ let day3Input = 325489;
 let day4Input = fs.readFileSync('inputs/day4', {encoding: 'utf-8'});
 let day5Input = fs.readFileSync('inputs/day5', {encoding: 'utf-8'});
 let day6Input = fs.readFileSync('inputs/day6', {encoding: 'utf-8'});
+let day7Input = fs.readFileSync('inputs/day7', {encoding: 'utf-8'});
 
 let day5 = new Day5(day5Input);
 
@@ -29,3 +31,5 @@ console.log('day 5 answer 1 = ', day5.getAnswer1());
 console.log('day 5 answer 2 = ', day5.getAnswer2());
 console.log('day 6 answer 1 = ', day6.getAnswer1(day6Input));
 console.log('day 6 answer 2 = ', day6.getAnswer2(day6Input));
+console.log('day 7 answer 1 = ', day7.getAnswer1(day7Input));
+console.log('day 7 answer 2 = ', day7.getAnswer2(day7Input));
