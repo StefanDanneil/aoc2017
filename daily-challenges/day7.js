@@ -76,15 +76,54 @@ class Program {
 		return this.parent.findRootParent();
 	}
 
-	findTotalWeightForNode () {
+	setTotalWeightForNodeAndChildren () {
 		let sum = 0;
 
 		this.children.forEach(child => {
-			sum += child.findTotalWeightForNode();
+			sum += child.setTotalWeightForNodeAndChildren();
 		});
 
 		sum += +this.weight;
+		this.totalWeight = sum;
 		return sum;
+	}
+
+	findUnbalancedNode(difference = 0) {
+		let oddOne;
+		let seenValues = [];
+
+		this.children.forEach(child => {
+			if (!seenValues.includes(child.totalWeight)) {
+				seenValues.push(child.totalWeight)
+			}
+		});
+
+		if (seenValues.length > 1) {
+			for (var i = 2; i < this.children.length; i++) {
+				let firstChild = this.children[i-2];
+				let secondChild = this.children[i-1];
+				let thirdChild = this.children[i];
+
+				if (firstChild.totalWeight === secondChild.totalWeight) {
+					oddOne = thirdChild;
+					difference = oddOne.totalWeight - firstChild.totalWeight;
+				} else if (secondChild.totalWeight === thirdChild.totalWeight) {
+					oddOne = firstChild;
+					difference = oddOne.totalWeight - secondChild.totalWeight;
+				} else if (firstChild.totalWeight === thirdChild.totalWeight) {
+					oddOne = secondChild;
+					difference = oddOne.totalWeight - firstChild.totalWeight;
+				}
+			}
+		}
+
+		if (oddOne && oddOne.children.length > 0) {
+			return oddOne.findUnbalancedNode(difference);
+		} else {
+			this.difference = difference;
+			return this;
+		}
+
 	}
 }
 
@@ -101,29 +140,12 @@ let day7 = {
 
 		let rootParent = tree.lastInsertedProgram.findRootParent();
 
-		rootParent.children.forEach(child => child.totalWeight = child.findTotalWeightForNode());
-		let oddOne;
-		let difference = 0;
+		rootParent.setTotalWeightForNodeAndChildren();
 
-		for (var i = 2; i < rootParent.children.length; i++) {
-			let firstChild = rootParent.children[i-2];
-			let secondChild = rootParent.children[i-1];
-			let thirdChild = rootParent.children[i];
+		let imbalancedNode = rootParent.findUnbalancedNode();
 
-			if (firstChild.totalWeight === secondChild.totalWeight) {
-				oddOne = thirdChild;
-				difference = oddOne.totalWeight - firstChild.totalWeight;
-			} else if (secondChild.totalWeight === thirdChild.totalWeight) {
-				oddOne = firstChild;
-				difference = oddOne.totalWeight - secondChild.totalWeight;
-			} else if (firstChild.totalWeight === thirdChild.totalWeight) {
-				oddOne = secondChild;
-				difference = oddOne.totalWeight - firstChild.totalWeight;
-			}
+		return imbalancedNode.weight - imbalancedNode.difference;
 
-		};
-
-		return oddOne.weight - difference;
 	}
 
 }

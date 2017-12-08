@@ -17,7 +17,7 @@ describe('getAnswer1', () => {
 describe('getAnswer2', () => {
 
   test('with testinput it should return 60', () => {
-    expect(day7.getAnswer2(testinput)).toBe(103);
+    expect(day7.getAnswer2(testinput)).toBe(60);
   })
 
 });
