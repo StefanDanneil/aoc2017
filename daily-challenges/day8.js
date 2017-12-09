@@ -3,7 +3,6 @@
 let day8 = {
 
 	registry: {},
-
 	highestValueSeen: null,
 
 	getAnswer1: function (input) {
@@ -32,23 +31,9 @@ let day8 = {
 	},
 
 	meetsCriteria: function (part1, operator, part2) {
-		if (isNaN(part1)) {
-			if (!this.registry[part1]) {
-				this.registry[part1] = 0;
-				part1 = 0;
-			} else {
-				part1 = this.registry[part1];
-			}
-		} else
 
-		if (isNaN(part2)) {
-			if (!this.registry[part2]) {
-				this.registry[part2] = 0;
-				part2 = 0;
-			} else {
-				part2 = this.registry[part2];
-			}
-		}
+		part1 = this.ensureRegistryValue(part1);
+		part2 = this.ensureRegistryValue(part2);
 
 		switch (operator) {
 			case '>':
@@ -69,6 +54,19 @@ let day8 = {
 				return part1 != part2;
 				break;
 		}
+	},
+
+	ensureRegistryValue(part) {
+		if (isNaN(part)) {
+			if (!this.registry[part]) {
+				this.registry[part] = 0;
+				part = 0;
+			} else {
+				part = this.registry[part];
+			}
+		}
+
+		return part;
 	},
 
 	performOperation: function (target, value, operation) {
